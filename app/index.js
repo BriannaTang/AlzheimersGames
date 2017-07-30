@@ -12,6 +12,8 @@ import MathGame1 from './Screens/MathGame1';
 import WordGame1 from './Screens/WordGame1';
 import MathGame2 from './Screens/MathGame2';
 import WordGame2 from './Screens/WordGame2';
+import MathGame3 from './Screens/MathGame3';
+
 
 
 export const Root = StackNavigator(
@@ -20,8 +22,9 @@ export const Root = StackNavigator(
     ChooseGame: { screen: ChooseGameScreen },
     MathGame1: { screen: MathGame1 },
     WordGame1: { screen: WordGame1 },
-    MathGame2: { screen: AgeScreen },
-    WordGame2: { screen: WordGame2 }
+    MathGame2: { screen: MathGame2 },
+    WordGame2: { screen: WordGame2 },
+    MathGame3: { screen: MathGame3 }
   },
   { headerMode: 'screen' }
 );
