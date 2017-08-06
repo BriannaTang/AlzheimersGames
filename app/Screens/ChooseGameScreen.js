@@ -9,6 +9,8 @@ import {
   TouchableOpacity,
   Image
 } from 'react-native';
+import MathImage1 from '../Resources/MathImage1.png';
+import WordImage1 from '../Resources/WordImage1.png';
 
 
 export default class ChooseGameScreen extends Component {
@@ -24,13 +26,13 @@ export default class ChooseGameScreen extends Component {
         </Text>
         <TouchableOpacity onPress={ () => {navigate('MathGame1')}}>
             <Image
-              source={{ uri: 'file:///Users/brianna/Desktop/Screen%20Shot%202017-07-22%20at%206.33.44%20PM.png'}}
+              source={MathImage1}
               style={{ height: 120, width: 120 }}
             />
         </TouchableOpacity>
         <TouchableOpacity onPress={ () => {navigate('WordGame1')}}>
           <Image
-            source={{ uri: 'file:///Users/brianna/Desktop/Screen%20Shot%202017-07-22%20at%206.33.09%20PM.png' }}
+            source={WordImage1}
             style={{ height: 120, width: 120 }}
           />
         </TouchableOpacity>

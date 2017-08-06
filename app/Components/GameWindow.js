@@ -17,7 +17,6 @@ class GameWindow extends Component {
       >
         <Board
           loseGame={this.props.loseGame}
-          incrementScore={this.props.incrementScore}
           blockSize={this.props.height / 16}
           direction={this.props.direction}
         />

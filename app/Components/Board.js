@@ -109,7 +109,6 @@ class Board extends Component {
         this.props.loseGame();
         break;
       case 'food':
-        this.props.incrementScore();
         tempArray[location] = { type: 'snake', decay: this.state.globalDecay };
         this.setState({
           globalDecay: this.state.globalDecay + 2,

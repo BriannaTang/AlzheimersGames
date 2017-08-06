@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react';
 import {
   AppRegistry,
@@ -5,8 +6,11 @@ import {
   Text,
   View,
   TextInput,
-  Button
+  Button,
+  TouchableHighlight
 } from 'react-native';
+import GameObject from '../Components/GameObject'
+
 
 export default class WordGame2 extends Component {
   render() {

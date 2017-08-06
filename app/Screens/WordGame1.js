@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 import { Text, View, Dimensions, Button } from 'react-native';
 
-import StatusBarProtector from '../Components/StatusBarProtector';
-import Score from '../Components/Score';
 import GameWindow from '../Components/GameWindow';
 import Controls from '../Components/Controls';
 
 const {height, width} = Dimensions.get('window');
-const scoreHeight = height * 0.047;
 const gameHeight  = height * 0.65;
 const gameWidth   = gameHeight * (9/16);
 
@@ -18,14 +15,13 @@ class WordGame1 extends Component {
     super();
     this.state = {
       direction: 'left',
-      score: 0,
+
       screen: 'start',
     }
     this.setLeft        = this.setLeft.bind(this);
     this.setRight       = this.setRight.bind(this);
     this.setUp          = this.setUp.bind(this);
     this.setDown        = this.setDown.bind(this);
-    this.incrementScore = this.incrementScore.bind(this);
     this.startGame      = this.startGame.bind(this);
     this.loseGame       = this.loseGame.bind(this);
   }
@@ -66,16 +62,10 @@ class WordGame1 extends Component {
     }
   }
 
-  incrementScore() {
-    this.setState({
-      score: this.state.score + 10,
-    });
-  }
-
   startGame() {
     this.setState({
       screen: 'running',
-      score: 0,
+
       direction: 'left',
     });
   }
@@ -129,16 +119,10 @@ class WordGame1 extends Component {
               alignItems: 'center',
             }}
           >
-            <StatusBarProtector/>
-
             <Button title='Next Game' onPress={this.handlePress} />
-            <Score
-              size={scoreHeight}
-              value={this.state.score}
-            />
+
             <GameWindow
               loseGame={this.loseGame}
-              incrementScore={this.incrementScore}
               height={gameHeight}
               width={gameWidth}
               direction={this.state.direction}

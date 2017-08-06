@@ -10,7 +10,9 @@ import {
   Animated,
   Dimensions
 } from 'react-native';
-
+/*
+ballon
+*/
 export default class MathGame2 extends Component {
   constructor(props){
     super(props);
