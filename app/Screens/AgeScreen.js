@@ -32,7 +32,7 @@ export default class AgeScreen extends Component {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
-          Welcome to the Alzheimers App!
+          Welcome to the Neuron Cloud!
         </Text>
         <Text style={styles.instructions}>
           Enter your age below:

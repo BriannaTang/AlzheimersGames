@@ -11,8 +11,9 @@ import {
 } from 'react-native';
 
 class TouchableBoardTile extends Component {
-  
+
   render() {
+
     const { height, width } = Dimensions.get('window');
     const BoxSize = width * 0.25;
     const borderWidth = 1;
@@ -23,13 +24,13 @@ class TouchableBoardTile extends Component {
         width: BoxSize,
         borderWidth: borderWidth,
         borderColor: borderColor,
-        backgroundColor: this.state.correctBorders[i],
+        backgroundColor: this.props.correctBorder,
         justifyContent: 'center',
         alignItems: 'center' }}
-        onPress={()=>this.checkSymbol(i)}
       >
         {this.props.children}
       </TouchableOpacity>
     )
   }
 }
+export default TouchableBoardTile;

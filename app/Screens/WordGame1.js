@@ -15,7 +15,6 @@ class WordGame1 extends Component {
     super();
     this.state = {
       direction: 'left',
-
       screen: 'start',
     }
     this.setLeft        = this.setLeft.bind(this);
@@ -117,6 +116,7 @@ class WordGame1 extends Component {
               flex: 1,
               flexDirection: 'column',
               alignItems: 'center',
+              backgroundColor: '#f9f159'
             }}
           >
             <Button title='Next Game' onPress={this.handlePress} />

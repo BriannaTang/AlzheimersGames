@@ -23,11 +23,8 @@ export default class MathGame1 extends Component {
       symbols:[ '➗','✖️', '^',  '√', '➕', '➖'],
       lastPressed: '',
       correctBorders: Array(4).fill('white'),
-      rand : Math.floor(Math.random() * (100-1)) + 1,
-
-
+      rand : Math.floor(Math.random() * (20-1)) + 1,
     };
-
   }
 
   handlePress = () => {
@@ -41,7 +38,7 @@ export default class MathGame1 extends Component {
       let tempBorders = this.state.correctBorders.slice();
       tempBorders[i] = 'green';
       let tempOperations = this.state.operationChoice.slice();
-      tempOperations[i] = <Text style={styles.operation} >  {this.state.symbols[i]} </Text>;
+      tempOperations[i] = <Text style={styles.operation}>  {this.state.symbols[i]} </Text>;
       this.setState({
         correctBorders: tempBorders,
         operationChoice: tempOperations,
@@ -72,18 +69,18 @@ export default class MathGame1 extends Component {
         <View style={{height: BoxSize * 3, width: BoxSize * 3, flexWrap: 'wrap', }}>
           <BoardTile>
             <Text style={{ fontSize: 30, textAlign: 'center'}}>
-              { Math.floor(Math.sqrt(this.state.rand)) * 2 }
+              { this.state.rand * 8 }
             </Text>
           </BoardTile>
-          <TouchableBoardTile>
+          <TouchableBoardTile correctBorder={this.state.correctBorders[0]} onPress={()=>this.checkSymbol(0)}>
             { this.state.operationChoice[0] }
           </TouchableBoardTile>
           <BoardTile>
             <Text style={{ fontSize: 30, textAlign: 'center'}}>
-              { this.state.rand * 3 }
+              { 2 }
             </Text>
           </BoardTile>
-          <TouchableBoardTile>
+          <TouchableBoardTile correctBorder={this.state.correctBorders[1]} onPress={()=>this.checkSymbol(1)}>
             { this.state.operationChoice[1] }
           </TouchableBoardTile>
           <BoardTile>
@@ -91,20 +88,20 @@ export default class MathGame1 extends Component {
               { this.state.rand }
             </Text>
           </BoardTile>
-          <TouchableBoardTile>
+          <TouchableBoardTile correctBorder={this.state.correctBorders[2]} onPress={()=>this.checkSymbol(2)}>
             { this.state.operationChoice[2] }
           </TouchableBoardTile>
           <BoardTile>
             <Text style={{ fontSize: 30, textAlign: 'center'}}>
-              { Math.floor(Math.sqrt(this.state.rand)) }
+              { 1 }
             </Text>
           </BoardTile>
-          <TouchableBoardTile>
+          <TouchableBoardTile correctBorder={this.state.correctBorders[3]} onPress={()=>this.checkSymbol(3)}>
             { this.state.operationChoice[3] }
           </TouchableBoardTile>
           <BoardTile>
             <Text style={{ fontSize: 30, textAlign: 'center'}}>
-              { 2 }
+              { 4 }
             </Text>
           </BoardTile>
         </View>

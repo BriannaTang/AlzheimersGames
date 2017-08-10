@@ -4,7 +4,7 @@ import {
     View
 } from 'react-native';
 
-const PACKMAN_WIDTH = 20;
+const PACKMAN_WIDTH = 10;
 const PACKMAN_COLOR = 'yellow';
 
 const PackMan = () => {

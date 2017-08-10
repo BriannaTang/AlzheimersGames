@@ -6,21 +6,21 @@ import {
   View,
   TextInput,
   TouchableHighlight,
-  Dimensions
+  Dimensions,
+  Button
 } from 'react-native';
 import PackMan from '../Components/PackMan';
-import Controls from '../Components/Controls'
+import Controls from '../Components/Controls';
 /*
 PackMan
 */
 const {height, width} = Dimensions.get('window');
-
 export default class WordGame3 extends Component {
   constructor() {
     super();
     this.state = {
       direction: 'left',
-      screen: 'start',
+      boardArray: Array(144).fill({ type: 'empty' }),
     }
     this.setLeft        = this.setLeft.bind(this);
     this.setRight       = this.setRight.bind(this);
@@ -63,11 +63,17 @@ export default class WordGame3 extends Component {
     }
   }
 
+  handlePress = () => {
+    const { navigate } = this.props.navigation;
+    navigate('Completed', { age: parseInt(this.state.text) });
+  }
+
 
   render() {
     return (
       <View style={styles.container}>
         <PackMan/>
+
         <Controls
           width={width}
           left={this.setLeft}
@@ -75,6 +81,8 @@ export default class WordGame3 extends Component {
           up={this.setUp}
           down={this.setDown}
         />
+
+        <Button title='Submit' onPress={this.handlePress}/>
       </View>
     );
   }
@@ -86,6 +94,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'black',
+    backgroundColor: '#2a7bc1',
   },
 });

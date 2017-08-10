@@ -9,13 +9,16 @@ import {
   Button,
   TouchableHighlight
 } from 'react-native';
-import GameObject from '../Components/GameObject'
 
 
 export default class WordGame2 extends Component {
+  handlePress = () => {
+    const { navigate } = this.props.navigation;
+    navigate('WordGame3', { age: parseInt(this.state.text) });
+  }
   render() {
     return (
-      <View/>
+      <Button title='Submit' onPress={this.handlePress}/>
     )
   }
 }

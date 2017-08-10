@@ -31,3 +31,5 @@ class BoardTile extends Component {
     )
   }
 }
+
+export default BoardTile;

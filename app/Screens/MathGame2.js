@@ -19,8 +19,10 @@ export default class MathGame2 extends Component {
     this.state = {
       showDraggable: true,
       dropZoneValues: null,
-      pans: []
+      pans: [],
+      rand: Math.floor((Math.random() * (100 - 50)) + 50),
     };
+
 
     this.panResponders = [];
     for(let i = 0; i < 6; i++){
@@ -73,34 +75,58 @@ export default class MathGame2 extends Component {
         <Animated.View
           {...this.panResponders[0].panHandlers}
           style={[this.state.pans[0].getLayout(), styles.circle]}>
+          <Text>
+            { this.state.rand / 2 }
+          </Text>
+          <View onLayout={this.setDropZoneValues.bind(this)} style={styles.dropZone}/>
         </Animated.View>
         <View style={styles.cont} >
           <Animated.View
             {...this.panResponders[1].panHandlers}
             style={[this.state.pans[1].getLayout(), styles.circle6]}>
+            <Text>
+              { this.state.rand * 0.25}
+            </Text>
+            <View onLayout={this.setDropZoneValues.bind(this)} style={styles.dropZone}/>
           </Animated.View>
           <Animated.View
             {...this.panResponders[2].panHandlers}
             style={[this.state.pans[2].getLayout(), styles.circle2]}>
+            <Text>
+              { 2 }
+            </Text>
+            <View onLayout={this.setDropZoneValues.bind(this)} style={styles.dropZone}/>
           </Animated.View>
         </View>
         <Text style={styles.container}>
-          { Math.floor(Math.random() * (100 - 50 + 1)) + 50 }
+          { this.state.rand }
         </Text>
         <View style={styles.conts} >
           <Animated.View
             {...this.panResponders[3].panHandlers}
             style={[this.state.pans[3].getLayout(), styles.circle5]}>
+            <Text>
+              { this.state.rand * 0.75}
+            </Text>
+            <View onLayout={this.setDropZoneValues.bind(this)} style={styles.dropZone}/>
           </Animated.View>
           <Animated.View
             {...this.panResponders[4].panHandlers}
             style={[this.state.pans[4].getLayout(), styles.circle3]}>
+            <Text>
+              { Math.round(this.state.rand * 1.6) }
+            </Text>
+            <View onLayout={this.setDropZoneValues.bind(this)} style={styles.dropZone}/>
           </Animated.View>
         </View>
         <View style={styles.container} >
           <Animated.View
             {...this.panResponders[5].panHandlers}
             style={[this.state.pans[5].getLayout(), styles.circle4]}>
+            <Text>
+              { Math.round(this.state.rand * 0.6) }
+            </Text>
+            <View onLayout={this.setDropZoneValues.bind(this)} style={styles.dropZone}/>
           </Animated.View>
         </View>
         <View style={{flexDirection: 'row'}}>
@@ -110,19 +136,18 @@ export default class MathGame2 extends Component {
           <Button title=' ✖️ '/>
         </View>
         <Button title=' Next Game ' onPress={this.handlePress}/>
-        <View onLayout={this.setDropZoneValues.bind(this)} style={styles.dropZone}>
-          <Text style={styles.text}>Drop me here!</Text>
-        </View>
       </View>
     )
   }
 }
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     fontSize: 40,
     textAlign: 'center',
     alignItems: 'center',
-    justifyContent: 'space-around'
+    justifyContent: 'space-around',
+    backgroundColor: '#72ff98'
   },
   cont: {
     flexDirection: 'row',
@@ -171,8 +196,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'purple'
   },
   dropZone: {
-    width: 80,
-    height: 80,
-    borderRadius: 40,
-  },
+    width: 100,
+    height: 100,
+    borderRadius: 50
+  }
 });
