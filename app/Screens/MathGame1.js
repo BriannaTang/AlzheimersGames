@@ -23,7 +23,7 @@ export default class MathGame1 extends Component {
       symbols:[ '➗','✖️', '^',  '√', '➕', '➖'],
       lastPressed: '',
       correctBorders: Array(4).fill('white'),
-      rand : Math.floor(Math.random() * (20-1)) + 1,
+      rand : Math.floor(Math.random() * (13-1)) + 1,
     };
   }
 
@@ -69,7 +69,7 @@ export default class MathGame1 extends Component {
         <View style={{height: BoxSize * 3, width: BoxSize * 3, flexWrap: 'wrap', }}>
           <BoardTile>
             <Text style={{ fontSize: 30, textAlign: 'center'}}>
-              { this.state.rand * 8 }
+              { this.state.rand }
             </Text>
           </BoardTile>
           <TouchableBoardTile correctBorder={this.state.correctBorders[0]} onPress={()=>this.checkSymbol(0)}>
@@ -77,7 +77,7 @@ export default class MathGame1 extends Component {
           </TouchableBoardTile>
           <BoardTile>
             <Text style={{ fontSize: 30, textAlign: 'center'}}>
-              { 2 }
+              { this.state.rand }
             </Text>
           </BoardTile>
           <TouchableBoardTile correctBorder={this.state.correctBorders[1]} onPress={()=>this.checkSymbol(1)}>
@@ -85,7 +85,7 @@ export default class MathGame1 extends Component {
           </TouchableBoardTile>
           <BoardTile>
             <Text style={{ fontSize: 30, textAlign: 'center'}}>
-              { this.state.rand }
+              { 24 }
             </Text>
           </BoardTile>
           <TouchableBoardTile correctBorder={this.state.correctBorders[2]} onPress={()=>this.checkSymbol(2)}>
@@ -93,7 +93,7 @@ export default class MathGame1 extends Component {
           </TouchableBoardTile>
           <BoardTile>
             <Text style={{ fontSize: 30, textAlign: 'center'}}>
-              { 1 }
+              { this.state.rand }
             </Text>
           </BoardTile>
           <TouchableBoardTile correctBorder={this.state.correctBorders[3]} onPress={()=>this.checkSymbol(3)}>
@@ -101,7 +101,7 @@ export default class MathGame1 extends Component {
           </TouchableBoardTile>
           <BoardTile>
             <Text style={{ fontSize: 30, textAlign: 'center'}}>
-              { 4 }
+              { this.state.rand }
             </Text>
           </BoardTile>
         </View>
@@ -115,7 +115,6 @@ export default class MathGame1 extends Component {
 
         </View>
         { submitButton }
-
       </View>
     )
   }
