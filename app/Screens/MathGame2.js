@@ -54,14 +54,16 @@ export default class MathGame2 extends Component {
     }
   }
   isDropZone(gesture) {
-    const dz = this.state.dropZoneValues;
-    return gesture.moveY > dz.y && gesture.moveY < dz.y + dz.height;
-  }
-
-  setDropZoneValues(event){
-    this.setState({
-        dropZoneValues : event.nativeEvent.layout
-    });
+    // TODO (Bri): Remake this to work with this.state.pans (array)
+    for ( i = 0; i < this.state.pans.length; i++) {
+      const dz = this.state.pans[i].getLayout();
+      console.log(dz);
+      continue;
+      if (gesture.moveY > dz.y._value && gesture.moveY < dz.y._value + dz.height){
+        return true
+      }
+    }
+    return false
   }
 
   handlePress = () => {
@@ -78,7 +80,6 @@ export default class MathGame2 extends Component {
           <Text>
             { this.state.rand / 2 }
           </Text>
-          <View onLayout={this.setDropZoneValues.bind(this)} style={styles.dropZone}/>
         </Animated.View>
         <View style={styles.cont} >
           <Animated.View
@@ -87,7 +88,6 @@ export default class MathGame2 extends Component {
             <Text>
               { this.state.rand * 0.25}
             </Text>
-            <View onLayout={this.setDropZoneValues.bind(this)} style={styles.dropZone}/>
           </Animated.View>
           <Animated.View
             {...this.panResponders[2].panHandlers}
@@ -95,7 +95,6 @@ export default class MathGame2 extends Component {
             <Text>
               { 2 }
             </Text>
-            <View onLayout={this.setDropZoneValues.bind(this)} style={styles.dropZone}/>
           </Animated.View>
         </View>
         <Text style={styles.container}>
@@ -108,7 +107,6 @@ export default class MathGame2 extends Component {
             <Text>
               { this.state.rand * 0.75}
             </Text>
-            <View onLayout={this.setDropZoneValues.bind(this)} style={styles.dropZone}/>
           </Animated.View>
           <Animated.View
             {...this.panResponders[4].panHandlers}
@@ -116,7 +114,6 @@ export default class MathGame2 extends Component {
             <Text>
               { Math.round(this.state.rand * 1.6) }
             </Text>
-            <View onLayout={this.setDropZoneValues.bind(this)} style={styles.dropZone}/>
           </Animated.View>
         </View>
         <View style={styles.container} >
@@ -126,7 +123,6 @@ export default class MathGame2 extends Component {
             <Text>
               { Math.round(this.state.rand * 0.6) }
             </Text>
-            <View onLayout={this.setDropZoneValues.bind(this)} style={styles.dropZone}/>
           </Animated.View>
         </View>
         <View style={{flexDirection: 'row'}}>

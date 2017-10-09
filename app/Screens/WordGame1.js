@@ -8,6 +8,9 @@ const {height, width} = Dimensions.get('window');
 const gameHeight  = height * 0.65;
 const gameWidth   = gameHeight * (9/16);
 
+/*
+Snake game
+*/
 
 
 class WordGame1 extends Component {
