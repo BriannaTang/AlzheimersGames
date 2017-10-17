@@ -25,10 +25,10 @@ export default class ChooseGameScreen extends Component {
           math games:
         </Text>
         <TouchableOpacity onPress={ () => {navigate('MathGame1')}}>
-            <Image
-              source={MathImage1}
-              style={{ height: 120, width: 120 }}
-            />
+          <Image
+            source={MathImage1}
+            style={{ height: 120, width: 120 }}
+          />
         </TouchableOpacity>
         <TouchableOpacity onPress={ () => {navigate('WordGame1')}}>
           <Image

@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import {
   AppRegistry,
@@ -7,15 +6,16 @@ import {
   View,
   TextInput,
   Button,
-  TouchableHighlight
+  TouchableHighlight,
+  Image
 } from 'react-native';
 import Underscore from '../Components/Underscore';
 import FillInWord from '../Components/FillInWord';
 import Keyboard from '../Components/Keyboard';
+import hangmanImage1 from '../Resources/HangmanImage1.png';
 /*
 hangman
 */
-
 
 export default class WordGame2 extends Component {
   constructor(props) {
@@ -52,8 +52,14 @@ export default class WordGame2 extends Component {
     const word = this.state.words[Math.floor((Math.random()*this.state.words.length))];
     const numLetters = word.length;
     const underscore = '_';
+    const correctWord = word.split('');
+    const lettersCorrectGuessed = [];
+    const lettersIncorrectGuessed =[];
     return (
       <View style={styles.container}>
+        <Image
+          source={hangmanImage1}
+        />
         <FillInWord word='hello' lettersGuessed={this.state.lettersGuessed}/>
         <Keyboard
           lettersGuessed={this.state.lettersGuessed}

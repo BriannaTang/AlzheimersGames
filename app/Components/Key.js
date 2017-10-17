@@ -6,7 +6,10 @@ class Key extends Component {
   render() {
     const {letter,onPress, isLetterGuessed} = this.props;
     return(
-      <TouchableOpacity onPress={onPress}>
+      <TouchableOpacity 
+        onPress={onPress} 
+        style={styles.container}
+      >
         <View>
           <Letter
             letter={isLetterGuessed ? ' ' : letter }
@@ -16,6 +19,11 @@ class Key extends Component {
     );
   }
 }
+const styles = StyleSheet.create({
+  container: {
+    minWidth: 30
+  }
+});
 
 
 
