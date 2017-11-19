@@ -15,7 +15,7 @@ class FillInLetter extends Component {
 }
 const styles = StyleSheet.create({
   container: {
-    margin: 10
+    margin: 10,
   }
 });
 export default FillInLetter;

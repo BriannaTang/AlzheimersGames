@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Text, View, Dimensions, Button } from 'react-native';
-
+import { Text, View, Dimensions, Button} from 'react-native';
+import Sound from 'react-native-sound';
 import GameWindow from '../Components/GameWindow';
 import Controls from '../Components/Controls';
+import Loser from '../Resources/Loser.mp3';
 
 const {height, width} = Dimensions.get('window');
 const gameHeight  = height * 0.65;
@@ -84,6 +85,24 @@ class WordGame1 extends Component {
   }
 
   render() {
+    Sound.setCategory('Playback');
+    const Loser = new Sound('Loser.mp3', Sound.MAIN_BUNDLE, (error) => {
+      if (error) {
+        console.log('failed to load the sound', error);
+        return;
+      }
+      // loaded successfully
+      console.log('duration in seconds: ' + Loser.getDuration() + 'number of channels: ' + Loser.getNumberOfChannels());
+    });
+    Loser.play((success) => {
+      if (success) {
+        console.log('successfully finished playing');
+      } else {
+        console.log('playback failed due to audio decoding errors');
+        // reset the player to its uninitialized state (android only)
+        // this is the only option to recover after an error occured and use the player again\
+      }
+    });
     switch (this.state.screen) {
       case 'start':
         return (
@@ -141,6 +160,7 @@ class WordGame1 extends Component {
         );
         break;
       case 'lost':
+      
         return (
           <View
             style={{

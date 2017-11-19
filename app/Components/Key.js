@@ -7,7 +7,11 @@ class Key extends Component {
     const {letter,onPress, isLetterGuessed} = this.props;
     return(
       <TouchableOpacity 
-        onPress={onPress} 
+        onPress={() => {
+          if(isLetterGuessed === false){
+            onPress();
+          }
+        }} 
         style={styles.container}
       >
         <View>

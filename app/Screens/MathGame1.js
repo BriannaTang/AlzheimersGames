@@ -24,6 +24,9 @@ export default class MathGame1 extends Component {
       lastPressed: '',
       correctBorders: Array(4).fill('white'),
       rand : Math.floor(Math.random() * (13-1)) + 1,
+      rands : Math.floor(Math.random() * (13-1)) + 1,
+      random : Math.floor(Math.random() * (13-1)) + 1,
+      randoms : Math.floor(Math.random() * (13-1)) + 1,
     };
   }
 
@@ -54,7 +57,6 @@ export default class MathGame1 extends Component {
   }
 
   render() {
-    console.log(this.state.rand);
     let completed = true;
     for(const j=0; j < this.state.correctBorders.length; j++) {
       if('green' !== this.state.correctBorders[j]) {
@@ -77,7 +79,7 @@ export default class MathGame1 extends Component {
           </TouchableBoardTile>
           <BoardTile>
             <Text style={{ fontSize: 30, textAlign: 'center'}}>
-              { this.state.rand }
+              { this.state.rands }
             </Text>
           </BoardTile>
           <TouchableBoardTile correctBorder={this.state.correctBorders[1]} onPress={()=>this.checkSymbol(1)}>
@@ -93,7 +95,7 @@ export default class MathGame1 extends Component {
           </TouchableBoardTile>
           <BoardTile>
             <Text style={{ fontSize: 30, textAlign: 'center'}}>
-              { this.state.rand }
+              { this.state.random }
             </Text>
           </BoardTile>
           <TouchableBoardTile correctBorder={this.state.correctBorders[3]} onPress={()=>this.checkSymbol(3)}>
@@ -101,7 +103,7 @@ export default class MathGame1 extends Component {
           </TouchableBoardTile>
           <BoardTile>
             <Text style={{ fontSize: 30, textAlign: 'center'}}>
-              { this.state.rand }
+              { this.state.randoms }
             </Text>
           </BoardTile>
         </View>

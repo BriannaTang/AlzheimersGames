@@ -20,7 +20,7 @@ import Completed from './Screens/Completed';
 
 export const Root = StackNavigator(
   {
-    Age: { screen: WordGame2 },
+    Age: { screen: AgeScreen },
     ChooseGame: { screen: ChooseGameScreen },
     MathGame1: { screen: MathGame1 },
     WordGame1: { screen: WordGame1 },

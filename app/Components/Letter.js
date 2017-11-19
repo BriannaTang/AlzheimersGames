@@ -13,7 +13,7 @@ class Letter extends Component {
 const styles = StyleSheet.create({
   container: {
     fontSize: 30,
-    color: '#137431'
+    color: '#137431',
   }
 });
 export default Letter;
