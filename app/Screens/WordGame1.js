@@ -3,7 +3,6 @@ import { Text, View, Dimensions, Button} from 'react-native';
 import Sound from 'react-native-sound';
 import GameWindow from '../Components/GameWindow';
 import Controls from '../Components/Controls';
-import Loser from '../Resources/Loser.mp3';
 
 const {height, width} = Dimensions.get('window');
 const gameHeight  = height * 0.65;
@@ -84,9 +83,9 @@ class WordGame1 extends Component {
     navigate('WordGame2', { age: parseInt(this.state.text) });
   }
 
-  render() {
+  render () {
     Sound.setCategory('Playback');
-    const Loser = new Sound('Loser.mp3', Sound.MAIN_BUNDLE, (error) => {
+    const Loser = new Sound('../Resources/Loser.mp3', Sound.MAIN_BUNDLE, (error) => {
       if (error) {
         console.log('failed to load the sound', error);
         return;
