@@ -85,7 +85,7 @@ class WordGame1 extends Component {
 
   render () {
     Sound.setCategory('Playback');
-    const Loser = new Sound('../Resources/Loser.mp3', Sound.MAIN_BUNDLE, (error) => {
+    const Loser = new Sound('Loser.mp3', Sound.MAIN_BUNDLE, (error) => {
       if (error) {
         console.log('failed to load the sound', error);
         return;
