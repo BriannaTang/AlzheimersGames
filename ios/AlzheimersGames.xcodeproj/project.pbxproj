@@ -38,7 +38,7 @@
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		ADBDB9381DFEBF1600ED6528 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
-		C9A7109C1FB00CF4001FF459 /* Loser.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C9A7109B1FB00CF4001FF459 /* Loser.mp3 */; };
+		C9973FE11FD4EB4F00178BCE /* Loser.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C9973FE01FD4EB4F00178BCE /* Loser.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -324,7 +324,7 @@
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		A2083EF25F7C4C5383952068 /* libRNSound.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNSound.a; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
-		C9A7109B1FB00CF4001FF459 /* Loser.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Loser.mp3; path = ../app/Resources/Loser.mp3; sourceTree = "<group>"; };
+		C9973FE01FD4EB4F00178BCE /* Loser.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Loser.mp3; path = ../app/Resources/Loser.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -544,7 +544,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				C9A7109B1FB00CF4001FF459 /* Loser.mp3 */,
+				C9973FE01FD4EB4F00178BCE /* Loser.mp3 */,
 				13B07FAE1A68108700A75B9A /* AlzheimersGames */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* AlzheimersGamesTests */,
@@ -1013,9 +1013,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9973FE11FD4EB4F00178BCE /* Loser.mp3 in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
-				C9A7109C1FB00CF4001FF459 /* Loser.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

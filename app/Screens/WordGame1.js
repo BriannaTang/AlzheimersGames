@@ -84,24 +84,6 @@ class WordGame1 extends Component {
   }
 
   render () {
-    Sound.setCategory('Playback');
-    const Loser = new Sound('Loser.mp3', Sound.MAIN_BUNDLE, (error) => {
-      if (error) {
-        console.log('failed to load the sound', error);
-        return;
-      }
-      // loaded successfully
-      console.log('duration in seconds: ' + Loser.getDuration() + 'number of channels: ' + Loser.getNumberOfChannels());
-    });
-    Loser.play((success) => {
-      if (success) {
-        console.log('successfully finished playing');
-      } else {
-        console.log('playback failed due to audio decoding errors');
-        // reset the player to its uninitialized state (android only)
-        // this is the only option to recover after an error occured and use the player again\
-      }
-    });
     switch (this.state.screen) {
       case 'start':
         return (
@@ -159,7 +141,24 @@ class WordGame1 extends Component {
         );
         break;
       case 'lost':
-      
+      Sound.setCategory('Playback');
+      const Loser = new Sound('Loser.mp3', Sound.MAIN_BUNDLE, (error) => {
+        if (error) {
+          console.log('failed to load the sound', error);
+          return;
+        }
+        // loaded successfully
+        Loser.play((success) => {
+          if (success) {
+            console.log('successfully finished playing');
+          } else {
+            console.log('playback failed due to audio decoding errors');
+            // reset the player to its uninitialized state (android only)
+            // this is the only option to recover after an error occured and use the player again\
+          }
+        });
+        console.log('duration in seconds: ' + Loser.getDuration() + 'number of channels: ' + Loser.getNumberOfChannels());
+      });
         return (
           <View
             style={{
