@@ -18,12 +18,13 @@ export default class MathGame2 extends Component {
     super(props);
     this.state = {
       showDraggable: true,
-      dropZoneValues: null,
+      dropAreaValues: null,
       pans: [],
+      opacity: new Animated.Value(1),
       rand: Math.floor((Math.random() * (100 - 50)) + 50),
     };
 
-
+  
     this.panResponders = [];
     for(let i = 0; i < 6; i++){
       this.state.pans.push(
@@ -37,33 +38,34 @@ export default class MathGame2 extends Component {
            dy: this.state.pans[i].y
           }]),
           onPanResponderRelease: (e, gesture) => {
-            if(this.isDropZone(gesture)){
+            if(this.isDropArea(gesture)){
+              Animated.timing(this.state.opacity, {
+                toValue: 0,
+                duration: 10000
+              }).start(() =>
               this.setState({
                 showDraggable : false
-              });
+              }));
             }
             else{
               Animated.spring(
                 this.state.pans[i],
-                {toValue:{x:0,y:0}}
-              ).start();
+                {toValue:{x:0,y:0},
+                friction: 20
+              }).start();
             }
           }
         })
+        
       )
+      
     }
+    
   }
-  isDropZone(gesture) {
+
+  isDropArea(gesture) {
     // TODO (Bri): Remake this to work with this.state.pans (array)
-    for ( i = 0; i < this.state.pans.length; i++) {
-      const dz = this.state.pans[i].getLayout();
-      console.log(dz);
-      continue;
-      if (gesture.moveY > dz.y._value && gesture.moveY < dz.y._value + dz.height){
-        return true
-      }
-    }
-    return false
+    return gesture.moveY < 200;
   }
 
   handlePress = () => {
@@ -74,9 +76,9 @@ export default class MathGame2 extends Component {
   render() {
     return (
       <View style={styles.container} >
-        <Animated.View
+        <Animated.View 
           {...this.panResponders[0].panHandlers}
-          style={[this.state.pans[0].getLayout(), styles.circle]}>
+          style={[this.state.pans[0].getLayout(), styles.circle, styles.dropZone]}>
           <Text>
             { this.state.rand / 2 }
           </Text>
@@ -84,14 +86,14 @@ export default class MathGame2 extends Component {
         <View style={styles.cont} >
           <Animated.View
             {...this.panResponders[1].panHandlers}
-            style={[this.state.pans[1].getLayout(), styles.circle6]}>
+            style={[this.state.pans[1].getLayout(), styles.circle6, styles.dropZone]}>
             <Text>
               { this.state.rand * 0.25}
             </Text>
           </Animated.View>
           <Animated.View
             {...this.panResponders[2].panHandlers}
-            style={[this.state.pans[2].getLayout(), styles.circle2]}>
+            style={[this.state.pans[2].getLayout(), styles.circle2, styles.dropZone]}>
             <Text>
               { 2 }
             </Text>
@@ -103,14 +105,14 @@ export default class MathGame2 extends Component {
         <View style={styles.conts} >
           <Animated.View
             {...this.panResponders[3].panHandlers}
-            style={[this.state.pans[3].getLayout(), styles.circle5]}>
+            style={[this.state.pans[3].getLayout(), styles.circle5, styles.dropZone]}>              
             <Text>
               { this.state.rand * 0.75}
             </Text>
           </Animated.View>
           <Animated.View
             {...this.panResponders[4].panHandlers}
-            style={[this.state.pans[4].getLayout(), styles.circle3]}>
+            style={[this.state.pans[4].getLayout(), styles.circle3, styles.dropZone]}>
             <Text>
               { Math.round(this.state.rand * 1.6) }
             </Text>
@@ -119,20 +121,20 @@ export default class MathGame2 extends Component {
         <View style={styles.container} >
           <Animated.View
             {...this.panResponders[5].panHandlers}
-            style={[this.state.pans[5].getLayout(), styles.circle4]}>
+            style={[this.state.pans[5].getLayout(), styles.circle4, styles.dropZone]}>
             <Text>
               { Math.round(this.state.rand * 0.6) }
             </Text>
           </Animated.View>
         </View>
         <View style={{flexDirection: 'row'}}>
-          <Button title=' ➕ '/>
-          <Button title=' ➖ '/>
-          <Button title=' ➗ '/>
-          <Button title=' ✖️ '/>
+         <Button title=' ➕ '/>
+         <Button title=' ➖ '/>
+         <Button title=' ➗ '/>
+         <Button title=' ✖️ '/>
         </View>
-        <Button title=' Next Game ' onPress={this.handlePress}/>
-      </View>
+        < Button title=' Next Game ' onPress={this.handlePress}/>
+      </View>  
     )
   }
 }
@@ -192,8 +194,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'purple'
   },
   dropZone: {
-    width: 100,
-    height: 100,
-    borderRadius: 50
+    width: 80,
+    height:80,
+    borderRadius: 40,
   }
 });

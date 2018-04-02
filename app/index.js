@@ -29,7 +29,7 @@ import WordGame2Instructions from './Screens/WordGame2Instructions';
 
 export const Root = StackNavigator(
   {
-    Age: { screen:  MathGame3 },
+    Age: { screen:  MathGame2 },
     ChooseGame: { screen: ChooseGameScreen },
     MathGame1: { screen: MathGame1 },
     WordGame1: { screen: WordGame1 },
