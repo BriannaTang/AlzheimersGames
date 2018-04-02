@@ -8,6 +8,7 @@ import {
   TextInput,
   Button
 } from 'react-native';
+import Sound from 'react-native-sound';
 import AgeTextInput from '../Components/AgeTextInput';
 
 
@@ -25,7 +26,7 @@ export default class AgeScreen extends Component {
 
   handlePress = () => {
     const { navigate } = this.props.navigation;
-    navigate('ChooseGame', { age: parseInt(this.state.text) });
+    navigate('MathGame1Instructions', { age: parseInt(this.state.text) });
   }
 
   render() {

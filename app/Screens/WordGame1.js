@@ -80,7 +80,7 @@ class WordGame1 extends Component {
 
   handlePress = () => {
     const { navigate } = this.props.navigation;
-    navigate('WordGame2', { age: parseInt(this.state.text) });
+    navigate('MathGame2Instructions', { age: parseInt(this.state.text) });
   }
 
   render () {
@@ -91,7 +91,7 @@ class WordGame1 extends Component {
             style={{
               flex: 1,
               flexDirection: 'column',
-              backgroundColor: 'lightblue',
+              backgroundColor: '#f9c459',
               justifyContent: 'space-around',
               alignItems: 'center',
             }}
@@ -119,7 +119,7 @@ class WordGame1 extends Component {
               flex: 1,
               flexDirection: 'column',
               alignItems: 'center',
-              backgroundColor: '#f9f159'
+              backgroundColor: '#f9c459'
             }}
           >
             <Button title='Next Game' onPress={this.handlePress} />
@@ -147,16 +147,14 @@ class WordGame1 extends Component {
           console.log('failed to load the sound', error);
           return;
         }
-        // loaded successfully
         Loser.play((success) => {
           if (success) {
             console.log('successfully finished playing');
           } else {
             console.log('playback failed due to audio decoding errors');
-            // reset the player to its uninitialized state (android only)
-            // this is the only option to recover after an error occured and use the player again\
           }
         });
+        Loser.setCurrentTime(186);
         console.log('duration in seconds: ' + Loser.getDuration() + 'number of channels: ' + Loser.getNumberOfChannels());
       });
         return (

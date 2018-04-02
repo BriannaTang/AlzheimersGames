@@ -21,7 +21,7 @@ export default class MathGame1 extends Component {
     this.state = {
       operationChoice: Array(4).fill(<View/>),
       symbols:[ '➗','✖️', '^',  '√', '➕', '➖'],
-      lastPressed: '',
+      lastPressedSymbol: '',
       correctBorders: Array(4).fill('white'),
       rand : Math.floor(Math.random() * (13-1)) + 1,
       rands : Math.floor(Math.random() * (13-1)) + 1,
@@ -32,16 +32,18 @@ export default class MathGame1 extends Component {
 
   handlePress = () => {
     const { navigate } = this.props.navigation;
-    navigate('MathGame2', { age: parseInt(this.state.text) });
+    navigate('WordGame1Instructions', { age: parseInt(this.state.text) });
   }
 
 
-  checkSymbol=(i)=> {
-    if(this.state.lastPressed === this.state.symbols[i]) {
+  checkSymbol=(tileIndex)=> {
+    console.log(this.state.operationChoice);
+    if(this.state.lastPressedSymbol === this.state.symbols[tileIndex]) {
       let tempBorders = this.state.correctBorders.slice();
-      tempBorders[i] = 'green';
+      tempBorders[tileIndex] = 'green';
       let tempOperations = this.state.operationChoice.slice();
-      tempOperations[i] = <Text style={styles.operation}>  {this.state.symbols[i]} </Text>;
+      tempOperations[tileIndex] = <Text style={styles.operation}>  {this.state.symbols[tileIndex]} </Text>;
+      console.log('if return true');
       this.setState({
         correctBorders: tempBorders,
         operationChoice: tempOperations,
@@ -49,7 +51,8 @@ export default class MathGame1 extends Component {
     }
     else {
       let tempBorders = this.state.correctBorders.slice();
-      tempBorders[i] = 'red';
+      tempBorders[tileIndex] = 'red';
+      console.log('else return true');
       this.setState({
         correctBorders: tempBorders,
       });
@@ -63,6 +66,7 @@ export default class MathGame1 extends Component {
         completed = false;
       }
     }
+    console.log(this.state);
     const submitButton = completed ? <TextButton style={{fontSize: 20}} title='Submit' onPress={this.handlePress} /> : <View style={{height: 20}}/>;
     const { height, width } = Dimensions.get('window');
     const BoxSize = width * 0.25;
@@ -108,12 +112,12 @@ export default class MathGame1 extends Component {
           </BoardTile>
         </View>
         <View style={{flexDirection: 'row'}}>
-          <Button onPress={()=> this.setState({lastPressed: '➕',})} title=' ➕ '/>
-          <Button onPress={()=> this.setState({lastPressed: '➖',})} title=' ➖ '/>
-          <Button onPress={()=> this.setState({lastPressed: '➗',})} title=' ➗ '/>
-          <Button onPress={()=> this.setState({lastPressed: '✖️',})} title=' ✖️ '/>
-          <Button onPress={()=> this.setState({lastPressed: '√',})} title=' √ '/>
-          <Button onPress={()=> this.setState({lastPressed: '^',})} title=' ^ '/>
+          <Button onPress={()=> this.setState({lastPressedSymbol: '➕',})} title=' ➕ '/>
+          <Button onPress={()=> this.setState({lastPressedSymbol: '➖',})} title=' ➖ '/>
+          <Button onPress={()=> this.setState({lastPressedSymbol: '➗',})} title=' ➗ '/>
+          <Button onPress={()=> this.setState({lastPressedSymbol: '✖️',})} title=' ✖️ '/>
+          <Button onPress={()=> this.setState({lastPressedSymbol: '√',})} title=' √ '/>
+          <Button onPress={()=> this.setState({lastPressedSymbol: '^',})} title=' ^ '/>
 
         </View>
         { submitButton }
@@ -126,7 +130,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'space-around',
     alignItems: 'center',
-    backgroundColor: '#f9f159',
+    backgroundColor: '#F76D6D',
   },
   operation: {
     fontSize: 50,

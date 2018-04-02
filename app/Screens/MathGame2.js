@@ -68,7 +68,7 @@ export default class MathGame2 extends Component {
 
   handlePress = () => {
     const { navigate } = this.props.navigation;
-    navigate('MathGame3', { age: parseInt(this.state.text) });
+    navigate('WordGame2Instructions', { age: parseInt(this.state.text) });
   }
 
   render() {
@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     alignItems: 'center',
     justifyContent: 'space-around',
-    backgroundColor: '#72ff98'
+    backgroundColor: '#f9f159'
   },
   cont: {
     flexDirection: 'row',

@@ -91,7 +91,7 @@ export default class WordGame2 extends Component {
 
   handlePress = () => {
     const { navigate } = this.props.navigation;
-    navigate('WordGame3', { age: parseInt(this.state.text) });
+    navigate('Win', { age: parseInt(this.state.text) });
   }
 
   handleLetterGuessed(letter) {

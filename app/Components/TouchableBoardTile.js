@@ -13,7 +13,6 @@ import {
 class TouchableBoardTile extends Component {
 
   render() {
-
     const { height, width } = Dimensions.get('window');
     const BoxSize = width * 0.25;
     const borderWidth = 1;
@@ -27,6 +26,7 @@ class TouchableBoardTile extends Component {
         backgroundColor: this.props.correctBorder,
         justifyContent: 'center',
         alignItems: 'center' }}
+        onPress={this.props.onPress}
       >
         {this.props.children}
       </TouchableOpacity>
