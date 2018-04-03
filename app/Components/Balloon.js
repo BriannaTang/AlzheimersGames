@@ -4,7 +4,9 @@ import {
   View,
   Animated,
   Text,
-  StyleSheet
+  StyleSheet,
+  PanResponder,
+  TouchableOpacity
 } from 'react-native';
 
 export class Balloon extends Component {
@@ -13,64 +15,69 @@ export class Balloon extends Component {
     this.state = {
       showDraggable: true,
       dropAreaValues: null,
-      pans: [],
+      pan: new Animated.ValueXY(),
       opacity: new Animated.Value(1),
       rand: Math.floor((Math.random() * (100 - 50)) + 50),
     };
   }
 
+  componentWillMount () {
+    // Add a listener for the delta value change
+    this._val = { x:0, y:0 }
+    this.state.pan.addListener((value) => this._val = value);
+    // Initialize PanResponder with move handling
+    this.panResponder = PanResponder.create({
+      onStartShouldSetPanResponder: (e, gesture) => true,
+      onPanResponderMove: Animated.event([
+        null, { dx: this.state.pan.x, dy: this.state.pan.y }
+      ]),
+      onPanResponderRelease: (e, gesture) => {
+        if (this.isDropArea(gesture)) {
+          Animated.timing(
+            this.state.opacity,
+            {
+              toValue: 0,
+              duration: 1000
+            }
+          ).start(() =>
+            this.setState({
+              showDraggable: false
+            })
+          );
+        } else {
+          Animated.spring(this.state.pan, {
+            toValue: { x: 0, y: 0 },
+            friction: 5
+          }).start();
+        }
+      }
+    });
+    // adjusting delta value
+    this.state.pan.setValue({ x:0, y:0 });
+  }
+
   isDropArea = (gesture) => {
-    // TODO (Bri): Remake this to work with this.state.pans (array)
+    // TODO (Bri): Figure out how to check if the location is acceptable
+    // The location should be another component. 
+    // potential ideas: 
+    /* - store positions in an array
+     * - hard code the pixels and just check if that's acceptable
+     */
     return gesture.moveY < 200;
   }
 
   render() {
-    this.panResponders = [];
-    for (let i = 0; i < 6; i++) {
-      this.state.pans.push(
-        new Animated.ValueXY()
-      )
-      this.panResponders.push(
-        PanResponder.create({
-          onStartShouldSetPanResponder: () => true,
-          onPanResponderMove: Animated.event([null, {
-            dx: this.state.pans[i].x,
-            dy: this.state.pans[i].y
-          }]),
-          onPanResponderRelease: (e, gesture) => {
-            if (this.isDropArea(gesture)) {
-              console.log("running animation");
-              Animated.timing(this.state.opacity, {
-                toValue: 0,
-                duration: 1000
-              }).start(() => {
-                console.log("cycling");
-                this.setState({
-                  showDraggable: false
-                })
-              });
-            }
-            else {
-              Animated.spring(
-                this.state.pans[i],
-                {
-                  toValue: { x: 0, y: 0 },
-                  friction: 20
-                }).start();
-            }
-          }
-        })
-      )
+    const panStyle = {
+      ...this.props.style,
+      transform: this.state.pan.getTranslateTransform(),
+      opacity: this.state.opacity
     }
-
     return (
       <Animated.View
-        {...this.panResponders[0].panHandlers}
-        style={[this.state.pans[0].getLayout(), styles.circle, styles.dropZone]}
+        {...this.panResponder.panHandlers}
+        style={[panStyle, styles[this.props.circleId]]}
       >
-        <Text>
-          {this.state.rand / 2}
-        </Text>
+        <Text>{this.props.value}</Text>
       </Animated.View>
     );
   }
